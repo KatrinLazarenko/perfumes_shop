@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  db:
+    restart: always
+    image: postgres:14-alpine
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=perfumes
+      - POSTGRES_USER=perfumes
+      - POSTGRES_PASSWORD=perfumes
+  pgadmin:
+      image: dpage/pgadmin4
+      depends_on:
+        - db
+      ports:
+        - "5052:80"
+      environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: perfumes
+      restart: always
