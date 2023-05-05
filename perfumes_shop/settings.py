@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "warehouse",
     "catalogue",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,10 @@ WSGI_APPLICATION = 'perfumes_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -113,6 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Perfumes online store API',
+    'DESCRIPTION': 'online store API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
