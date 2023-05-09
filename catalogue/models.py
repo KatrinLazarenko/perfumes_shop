@@ -19,8 +19,12 @@ class Brand(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
+    article = models.CharField(max_length=13, null=True)
     name = models.CharField(max_length=255)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     description = models.TextField()
