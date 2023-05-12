@@ -2,7 +2,6 @@ from rest_framework import serializers
 
 from catalogue.models import Brand, Product
 from warehouse.models import WarehouseItem
-from warehouse.serializers import WarehouseItemSerializer
 
 
 class BrandSerializer(serializers.ModelSerializer):

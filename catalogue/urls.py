@@ -4,7 +4,7 @@ from rest_framework import routers
 from catalogue.views import BrandViewSet, ProductViewSet
 
 router = routers.DefaultRouter()
-router.register("bands", BrandViewSet)
+router.register("brands", BrandViewSet)
 router.register("products", ProductViewSet)
 
 urlpatterns = [path("", include(router.urls))]

@@ -24,7 +24,7 @@ class Brand(models.Model):
 
 
 class Product(models.Model):
-    article = models.CharField(max_length=13, null=True)
+    article = models.CharField(max_length=13)
     name = models.CharField(max_length=255)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     description = models.TextField()

@@ -1,6 +1,7 @@
 import openpyxl
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -12,6 +13,7 @@ from warehouse.serializers import WarehouseItemSerializer
 class WarehouseItemViewSet(viewsets.ModelViewSet):
     queryset = WarehouseItem.objects.all()
     serializer_class = WarehouseItemSerializer
+    permission_classes = [IsAdminUser]
 
     @action(detail=False, methods=["post"])
     def load_items(self, request):

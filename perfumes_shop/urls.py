@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("warehouse.urls", namespace="warehouse")),
     path("api/", include("catalogue.urls", namespace="catalogue")),
+    path("api/", include("user.urls", namespace="user")),
     path("api/doc/", SpectacularAPIView.as_view(), name="schema"),
     path("api/doc/swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
     path("api/doc/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
