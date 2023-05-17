@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from catalogue.models import Brand, Product
-from warehouse.models import WarehouseItem
 
 
 class BrandSerializer(serializers.ModelSerializer):
@@ -11,6 +10,17 @@ class BrandSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    brand = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+    def get_brand(self, obj):
+        return obj.brand.name
+
+
+class ProductItemsSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     price = serializers.SerializerMethodField()
     brand = serializers.SerializerMethodField()
@@ -38,16 +48,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_price(self, obj):
         try:
-            warehouse_item = WarehouseItem.objects.get(product=obj)
-            return warehouse_item.sale_price
-        except WarehouseItem.DoesNotExist:
-            return None
+            return obj.resent_item[0].sale_price
+        except IndexError:
+            return "Out of stock"
 
     def get_brand(self, obj):
         return obj.brand.name
-
-
-class ProductDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = "__all__"
