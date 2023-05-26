@@ -20,6 +20,12 @@ class ProductSerializer(serializers.ModelSerializer):
         return obj.brand.name
 
 
+class ProductDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+
 class ProductItemsSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     price = serializers.SerializerMethodField()
